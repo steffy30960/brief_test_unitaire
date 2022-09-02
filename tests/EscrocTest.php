@@ -70,6 +70,6 @@ class EscrocTest extends KernelTestCase
         $email = $this->getEntity()->getEmail();
         $container->get('validator')->validate($escroc);
 
-        $this->assertMatchesRegularExpression('/^.+\@\S+\.\S+$/', $email);
+        $this->assertMatchesRegularExpression('/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/', $email);
     }
 }
