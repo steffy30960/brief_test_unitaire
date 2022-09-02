@@ -28,26 +28,26 @@ class EscrocTest extends KernelTestCase
         $this->assertCount(0, $errors);
     }
 
-    public function testNameIsValid()
+    public function testGetFirstname()
     {
         self::bootKernel();
         $container = static::getContainer();
         $escroc = $this->getEntity();
-        $escroc->setFirstname('Sosso');
+        $firstname = $this->getEntity()->getFirstname();
         $container->get('validator')->validate($escroc);
 
-        $this->assertEmpty('');
+        $this->assertEquals($escroc->getFirstname(), $firstname);
     }
 
-    public function testIsAdminIsValid()
+    public function testIsAdminIsBool()
     {
         self::bootKernel();
         $container = static::getContainer();
         $escroc = $this->getEntity();
-        $escroc->setIsAdmin(false);
+        $is_admin = $this->getEntity()->isIsAdmin();
         $container->get('validator')->validate($escroc);
 
-        $this->assertTrue(1 === 1);
+        $this->assertIsBool($is_admin);
     }
 
     public function testPhoneIsInt()
@@ -55,7 +55,7 @@ class EscrocTest extends KernelTestCase
         self::bootKernel();
         $container = static::getContainer();
         $escroc = $this->getEntity();
-        $phone = 0606060606;
+        $phone = $this->getEntity()->getPhone();
         $escroc->setPhone($phone);
         $container->get('validator')->validate($escroc);
 
